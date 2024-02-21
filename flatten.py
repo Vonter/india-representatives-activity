@@ -69,6 +69,20 @@ def get_personal_profile(soup):
 
     return personalProfile
 
+# Extract minister status of the representative
+def get_minister_status(soup):
+    ministerStatus = {}
+
+    div = soup.find_all('div', class_='field-item')[0]
+    text = div.get_text(strip=True)
+    if "Minister" in text:
+        ministerStatus["Minister"] = "Yes"
+    else:
+        ministerStatus["Minister"] = "No"
+    ministerStatus["Comment"] = text.lstrip().rstrip()
+
+    return ministerStatus
+
 # Extract details about the representative
 def get_representative(soup):
     representative = {}
@@ -77,11 +91,13 @@ def get_representative(soup):
         representative.update(get_name(soup))
         representative.update(get_basic_info(soup))
         representative.update(get_personal_profile(soup))
+        representative.update(get_minister_status(soup))
     except:
         logging.error("failed to extract information about the representative")
         raise
 
     return representative
+
 
 # Parse the HTML table and return a DataFrame with table contents
 def parse_table(table):
@@ -145,6 +161,7 @@ def init_json(representative, legislativeActivity):
 
     json["Name"] = representative["Name"]
     json["Constituency"] = representative["Constituency"]
+    json["Minister"] = representative["Minister"]
 
     try:
         attendance_average = (legislativeActivity["Attendance"]["Attendance"].str.rstrip('%').astype(float) /  100).mean()
