@@ -138,7 +138,7 @@ def init_dataframes(soup):
 def get_legislative_activity(dataFrames):
     try:
         details = {}
-        dataFrameTypes = ["Attendance", "Debates", "Questions", "Bills"]
+        dataFrameTypes = ["Attendance", "Debates", "Questions", "Private Member Bills"]
         for dataFrameType in dataFrameTypes:
             details[dataFrameType] = pd.DataFrame()
         for dataFrame in dataFrames:
@@ -149,7 +149,7 @@ def get_legislative_activity(dataFrames):
             if "Ministry or Category" in dataFrame.columns:
                 details["Questions"] = dataFrame
             if "Bill title" in dataFrame.columns:
-                details["Bills"] = dataFrame
+                details["Private Member Bills"] = dataFrame
         return details
     except:
         logging.error("Failed to get representative details")
@@ -170,7 +170,7 @@ def init_json(representative, legislativeActivity):
         json["Attendance"] = ""
     json["Debates"] = len(legislativeActivity["Debates"])
     json["Questions"] = len(legislativeActivity["Questions"])
-    json["Bills"] = len(legislativeActivity["Bills"])
+    json["Private Member Bills"] = len(legislativeActivity["Private Member Bills"])
 
     representative["State"] = representative["State"][:representative["State"].rfind("(") - 1]
     representative["Party"] = representative["Party"][:representative["Party"].rfind("(") - 1]
@@ -180,7 +180,7 @@ def init_json(representative, legislativeActivity):
     json["Activity"]["Attendance"] = (legislativeActivity["Attendance"].to_dict(orient='records'))
     json["Activity"]["Debates"] = (legislativeActivity["Debates"].to_dict(orient='records'))
     json["Activity"]["Questions"] = (legislativeActivity["Questions"].to_dict(orient='records'))
-    json["Activity"]["Bills"] = (legislativeActivity["Bills"].to_dict(orient='records'))
+    json["Activity"]["Private Member Bills"] = (legislativeActivity["Private Member Bills"].to_dict(orient='records'))
 
     return json
 
