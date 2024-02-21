@@ -21,11 +21,27 @@ The minified dataset combined across each Lok Sabha can be explored here: <https
 **Note:**
 - The legislative activity of a representative who is a "Minister" is not reported by PRS India. These representatives will have their activity reported as 0 in this dataset.
 - Details about a few representatives are unavailable on PRS India. These representatives will be missing in this dataset.
+### Aggregated
+
+Aggregated datasets, containing the legislative activity of every representative, grouped by activity type, can be found as CSV files under the [activity/](activity) folder:
+- Debates:
+    - [17th Lok Sabha (Current)](activity/Lok%20Sabha/Debates/17th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Debates/17th.csv&stickyColumnName=Date%2Cdesc))
+    - [16th Lok Sabha](activity/Lok%20Sabha/Debates/16th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Debates/16th.csv&stickyColumnName=Date%2Cdesc))
+    - [15th Lok Sabha](activity/Lok%20Sabha/Debates/15th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Debates/15th.csv&stickyColumnName=Date%2Cdesc))
+- Questions
+    - [17th Lok Sabha (Current)](activity/Lok%20Sabha/Questions/17th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Questions/17th.csv&stickyColumnName=Date%2Cdesc))
+    - [16th Lok Sabha](activity/Lok%20Sabha/Questions/16th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Questions/16th.csv&stickyColumnName=Date%2Cdesc))
+    - [15th Lok Sabha](activity/Lok%20Sabha/Questions/15th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Questions/15th.csv&stickyColumnName=Date%2Cdesc))
+- Private Member Bills
+    - [17th Lok Sabha (Current)](activity/Lok%20Sabha/Private%20Member%20Bills/17th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Private%20Member%20Bills/17th.csv&stickyColumnName=Date%2Cdesc))
+    - [16th Lok Sabha](activity/Lok%20Sabha/Private%20Member%20Bills/16th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Private%20Member%20Bills/16th.csv&stickyColumnName=Date%2Cdesc))
+    - [15th Lok Sabha](activity/Lok%20Sabha/Private%20Member%20Bills/15th.csv?raw=1) (or explore the dataset [here](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Lok%20Sabha/Private%20Member%20Bills/15th.csv&stickyColumnName=Date%2Cdesc))
 
 ## Scripts
 
 - [fetch.sh](fetch.sh): Fetches the raw HTML pages from [PRS India](https://prsindia.org/)
 - [flatten.py](flatten.py): Parses the raw HTML pages, and generates the JSON and CSV datasets
+- [aggregate.py](aggregate.py): Parses the main JSON dataset, and aggregates legislative activity, by activity type, into CSV files
 
 ## License
 
@@ -54,6 +70,9 @@ bash fetch.sh
 
 # Generate the CSV
 python flatten.py
+
+# Generate the aggregated CSVs
+python aggregate.py
 ```
 
 The fetch script sources data from PRS India (https://prsindia.org/)
