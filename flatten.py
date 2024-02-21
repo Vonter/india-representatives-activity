@@ -201,6 +201,8 @@ def build_json(lok_sabha):
                     soup = read_html(file_content)
                     # Get representative details from the HTML
                     representative = get_representative(soup)
+                    # Add the Lok Sabha number for the representative
+                    representative["Lok Sabha"] = p.ordinal(lok_sabha.split("/")[1])
                     # Initialize dataFrames with legislative activity information from HTML tables
                     dataFrames = init_dataframes(soup)
                     # Get legislativeActivity details from the dataFrames
@@ -211,9 +213,6 @@ def build_json(lok_sabha):
                     lokSabhaJson.append(json)
                 except:
                     logging.info("Skipping {}".format(file_name))
-
-    # Add the Lok Sabha number to the JSON of every representative
-    lokSabhaJson = [{**d, "Lok Sabha": p.ordinal(lok_sabha.split("/")[1])} for d in lokSabhaJson]
 
     return lokSabhaJson
 
