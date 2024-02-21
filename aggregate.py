@@ -41,7 +41,10 @@ def build_csvs():
                     dataFrame = pd.DataFrame(aggregate_json(data, activityType))
 
                     # Convert first column of dataFrame to datetime format
-                    dataFrame.iloc[:,  0] = pd.to_datetime(dataFrame.iloc[:,  0])
+                    try:
+                        dataFrame.iloc[:,  0] = pd.to_datetime(dataFrame.iloc[:,  0], format="%d.%m.%Y")
+                    except:
+                        dataFrame.iloc[:,  0] = pd.to_datetime(dataFrame.iloc[:,  0], format="%Y-%m-%d")
 
                     csv_file_directory = os.path.join("activity", "{}".format(activityType), "{}".format(json_file.split("/")[2]))
                     os.makedirs(csv_file_directory, exist_ok=True)
@@ -50,6 +53,7 @@ def build_csvs():
                     dataFrame.to_csv(csv_file_path, index=False, sep=";", quoting=csv.QUOTE_ALL)
     except:
         logging.error("Failed to process {}".format(json_file))
+        raise
 
 def aggregate():
     build_csvs()
