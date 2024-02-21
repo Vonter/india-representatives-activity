@@ -33,20 +33,21 @@ def build_csvs():
     directory_path = './json'
     json_files = glob.glob(os.path.join(directory_path, '**/*.json'), recursive=True)
 
-    dataFrames = {}
-
     try:
         for json_file in json_files:
             with open(json_file, 'r') as file:
                 data = json.load(file)
                 for activityType in ["Debates", "Questions", "Private Member Bills"]:
-                    dataFrames[activityType] = pd.DataFrame(aggregate_json(data, activityType))
+                    dataFrame = pd.DataFrame(aggregate_json(data, activityType))
+
+                    # Convert first column of dataFrame to datetime format
+                    dataFrame.iloc[:,  0] = pd.to_datetime(dataFrame.iloc[:,  0])
 
                     csv_file_directory = os.path.join("activity", "{}".format(activityType), "{}".format(json_file.split("/")[2]))
                     os.makedirs(csv_file_directory, exist_ok=True)
 
                     csv_file_path = os.path.join(csv_file_directory, json_file.split("/")[-1].replace("json", "csv"))
-                    dataFrames[activityType].to_csv(csv_file_path, index=False, sep=";", quoting=csv.QUOTE_ALL)
+                    dataFrame.to_csv(csv_file_path, index=False, sep=";", quoting=csv.QUOTE_ALL)
     except:
         logging.error("Failed to process {}".format(json_file))
 
