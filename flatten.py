@@ -69,6 +69,20 @@ def get_personal_profile(soup):
 
     return personalProfile
 
+# Extract minister status of the representative
+def get_minister_status(soup):
+    ministerStatus = {}
+
+    div = soup.find_all('div', class_='field-item')[0]
+    text = div.get_text(strip=True)
+    if "Minister" in text:
+        ministerStatus["Minister"] = "Yes"
+    else:
+        ministerStatus["Minister"] = "No"
+    ministerStatus["Comment"] = text.lstrip().rstrip()
+
+    return ministerStatus
+
 # Extract details about the representative
 def get_representative(soup):
     representative = {}
@@ -77,11 +91,13 @@ def get_representative(soup):
         representative.update(get_name(soup))
         representative.update(get_basic_info(soup))
         representative.update(get_personal_profile(soup))
+        representative.update(get_minister_status(soup))
     except:
         logging.error("failed to extract information about the representative")
         raise
 
     return representative
+
 
 # Parse the HTML table and return a DataFrame with table contents
 def parse_table(table):
@@ -122,7 +138,7 @@ def init_dataframes(soup):
 def get_legislative_activity(dataFrames):
     try:
         details = {}
-        dataFrameTypes = ["Attendance", "Debates", "Questions", "Bills"]
+        dataFrameTypes = ["Attendance", "Debates", "Questions", "Private Member Bills"]
         for dataFrameType in dataFrameTypes:
             details[dataFrameType] = pd.DataFrame()
         for dataFrame in dataFrames:
@@ -133,7 +149,7 @@ def get_legislative_activity(dataFrames):
             if "Ministry or Category" in dataFrame.columns:
                 details["Questions"] = dataFrame
             if "Bill title" in dataFrame.columns:
-                details["Bills"] = dataFrame
+                details["Private Member Bills"] = dataFrame
         return details
     except:
         logging.error("Failed to get representative details")
@@ -145,6 +161,7 @@ def init_json(representative, legislativeActivity):
 
     json["Name"] = representative["Name"]
     json["Constituency"] = representative["Constituency"]
+    json["Minister"] = representative["Minister"]
 
     try:
         attendance_average = (legislativeActivity["Attendance"]["Attendance"].str.rstrip('%').astype(float) /  100).mean()
@@ -153,7 +170,7 @@ def init_json(representative, legislativeActivity):
         json["Attendance"] = ""
     json["Debates"] = len(legislativeActivity["Debates"])
     json["Questions"] = len(legislativeActivity["Questions"])
-    json["Bills"] = len(legislativeActivity["Bills"])
+    json["Private Member Bills"] = len(legislativeActivity["Private Member Bills"])
 
     representative["State"] = representative["State"][:representative["State"].rfind("(") - 1]
     representative["Party"] = representative["Party"][:representative["Party"].rfind("(") - 1]
@@ -163,7 +180,7 @@ def init_json(representative, legislativeActivity):
     json["Activity"]["Attendance"] = (legislativeActivity["Attendance"].to_dict(orient='records'))
     json["Activity"]["Debates"] = (legislativeActivity["Debates"].to_dict(orient='records'))
     json["Activity"]["Questions"] = (legislativeActivity["Questions"].to_dict(orient='records'))
-    json["Activity"]["Bills"] = (legislativeActivity["Bills"].to_dict(orient='records'))
+    json["Activity"]["Private Member Bills"] = (legislativeActivity["Private Member Bills"].to_dict(orient='records'))
 
     return json
 
@@ -184,6 +201,8 @@ def build_json(lok_sabha):
                     soup = read_html(file_content)
                     # Get representative details from the HTML
                     representative = get_representative(soup)
+                    # Add the Lok Sabha number for the representative
+                    representative["Lok Sabha"] = p.ordinal(lok_sabha.split("/")[1])
                     # Initialize dataFrames with legislative activity information from HTML tables
                     dataFrames = init_dataframes(soup)
                     # Get legislativeActivity details from the dataFrames
@@ -194,9 +213,6 @@ def build_json(lok_sabha):
                     lokSabhaJson.append(json)
                 except:
                     logging.info("Skipping {}".format(file_name))
-
-    # Add the Lok Sabha number to the JSON of every representative
-    lokSabhaJson = [{**d, "Lok Sabha": p.ordinal(lok_sabha.split("/")[1])} for d in lokSabhaJson]
 
     return lokSabhaJson
 
