@@ -6,7 +6,7 @@ Browse the minified dataset for the current Lok Sabha here: <https://flatgithub.
 
 ## Dataset
 
-The complete dataset is available as JSON files under the [json/](json) folder in this repository. The JSON files include details on Attendance, Debates, Questions and Bills. Each Lok Sabha is available as a separate JSON file:
+The complete dataset is available as JSON files under the [json/](json) folder in this repository. The JSON files include details on Attendance, Debates, Questions and Private Member Bills. Each Lok Sabha is available as a separate JSON file:
 - [17th Lok Sabha (Current)](json/Lok%20Sabha/17th.json?raw=1)
 - [16th Lok Sabha](json/Lok%20Sabha/16th.json?raw=1)
 - [15th Lok Sabha](json/Lok%20Sabha/15th.json?raw=1)
@@ -17,6 +17,10 @@ Minified datasets, containing a subset of the data available in the above JSONs,
 - [15th Lok Sabha](csv/Lok%20Sabha/15th.csv?raw=1)
 
 The minified dataset combined across each Lok Sabha can be explored here: <https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha.csv&stickyColumnName=Name>
+
+**Note:**
+- The legislative activity of a representative who is a "Minister" is not reported by PRS India. These representatives will have their activity reported as 0 in this dataset.
+- Details about a few representatives are unavailable on PRS India. These representatives will be missing in this dataset.
 
 ## Scripts
 
