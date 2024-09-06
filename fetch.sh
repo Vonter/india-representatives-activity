@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for sabha in {15..17};
+for sabha in {15..18};
 do
   mkdir -p "raw/Lok Sabha/${sabha}"
 
@@ -21,7 +21,7 @@ do
   done
 done
 
-for sabha in {15..17};
+for sabha in {15..18};
 do
   zip -r "raw/Lok Sabha/${sabha}.zip" "raw/Lok Sabha/${sabha}/"
 done

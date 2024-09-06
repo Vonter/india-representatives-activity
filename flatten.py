@@ -216,7 +216,7 @@ def build_json(lok_sabha):
 
 # Flatten the raw HTMLs into a JSON file
 def flatten_lok_sabhas():
-    for lok_sabha in range(15, 18):
+    for lok_sabha in range(15, 19):
         try:
             lokSabhaJson = build_json("Lok Sabha/{}".format(lok_sabha))
             os.makedirs("json/Lok Sabha", exist_ok=True)
