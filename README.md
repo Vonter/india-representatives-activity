@@ -2,12 +2,13 @@
 
 Dataset of legislative activity by Indian parliamentary representatives. Sourced from [PRS India](https://prsindia.org/).
 
-Browse the minified dataset for the current Lok Sabha here: <https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/17th.csv&stickyColumnName=Name>.
+Browse the minified dataset for the current Lok Sabha here: <https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/18th.csv&stickyColumnName=Name>.
 
 ## Dataset
 
 The complete dataset is available as JSON files under the [json/](json) folder in this repository. The JSON files include details on Attendance, Debates, Questions and Private Member Bills. Each Lok Sabha is available as a separate JSON file:
-- [17th Lok Sabha (Current)](json/Lok%20Sabha/17th.json?raw=1)
+- [18th Lok Sabha (Current)](json/Lok%20Sabha/18th.json?raw=1)
+- [17th Lok Sabha](json/Lok%20Sabha/17th.json?raw=1)
 - [16th Lok Sabha](json/Lok%20Sabha/16th.json?raw=1)
 - [15th Lok Sabha](json/Lok%20Sabha/15th.json?raw=1)
 
@@ -20,10 +21,11 @@ The complete dataset is available as JSON files under the [json/](json) folder i
 Minified datasets, containing a subset of the data available in the above JSONs, can be found as CSV files under the [csv/](csv) folder.
 
 Browse the minified datasets:
-- [17th Lok Sabha (Current)](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/17th.csv&stickyColumnName=Name)
+- [18th Lok Sabha (Current)](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/18th.csv&stickyColumnName=Name)
+- [17th Lok Sabha](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/17th.csv&stickyColumnName=Name)
 - [16th Lok Sabha](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/16th.csv&stickyColumnName=Name)
 - [15th Lok Sabha](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha/15th.csv&stickyColumnName=Name)
-- [Combined (15th-17th) Lok Sabha](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha.csv&stickyColumnName=Name)
+- [Combined (15th-18th) Lok Sabha](https://flatgithub.com/Vonter/india-representatives-activity?filename=csv/Lok%20Sabha.csv&stickyColumnName=Name)
 
 ### Aggregated
 
@@ -31,11 +33,11 @@ Aggregated datasets, containing the legislative activity of every representative
 
 Browse the aggregated datasets:
 
-| Activity | 17th Lok Sabha (Current) | 16th Lok Sabha | 15th Lok Sabha |
+| Activity | 18th Lok Sabha (Current) | 17th Lok Sabha | 16th Lok Sabha | 15th Lok Sabha |
 |----------------------|---|---|---|
-| Debates | [22919 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/17th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) | [32713 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/16th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) | [18286 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/15th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) |
-| Questions | [101999 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/17th.csv&stickyColumnName=Title&sort=Date%2Cdesc) | [142340 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/16th.csv&stickyColumnName=Title&sort=Date%2Cdesc) | [143640 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/15th.csv&stickyColumnName=Title&sort=Date%2Cdesc) |
-| Private Member Bills | [729 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/17th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) | [1116 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/16th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) | [372 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/15th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) |
+| Debates | [1949 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/18th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) | [22919 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/17th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) | [32713 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/16th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) | [18286 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Debates/Lok%20Sabha/15th.csv&stickyColumnName=Debate%20title%2FBill%20name&sort=Date%2Cdesc) |
+| Questions | [5589 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/18th.csv&stickyColumnName=Title&sort=Date%2Cdesc) | [101999 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/17th.csv&stickyColumnName=Title&sort=Date%2Cdesc) | [142340 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/16th.csv&stickyColumnName=Title&sort=Date%2Cdesc) | [143640 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Questions/Lok%20Sabha/15th.csv&stickyColumnName=Title&sort=Date%2Cdesc) |
+| Private Member Bills | [66 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/18th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) | [729 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/17th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) | [1116 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/16th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) | [372 rows](https://flatgithub.com/Vonter/india-representatives-activity?filename=activity/Private%20Member%20Bills/Lok%20Sabha/15th.csv&stickyColumnName=Bill%20title&sort=Date%20of%20introduction%2Cdesc) |
 
 ## Scripts
 
