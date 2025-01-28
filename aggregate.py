@@ -46,6 +46,12 @@ def build_csvs():
                     except:
                         dataFrame.iloc[:,  0] = pd.to_datetime(dataFrame.iloc[:,  0], format="%Y-%m-%d")
 
+                    for column in dataFrame.select_dtypes(include=['object']):
+                        dataFrame[column] = dataFrame[column].apply(
+                            lambda x: x.replace('\n', ' ') if isinstance(x, str) else x
+                        )
+                    dataFrame = dataFrame.sort_values(by=dataFrame.columns[0], ascending=False)
+
                     csv_file_directory = os.path.join("activity", "{}".format(activityType), "{}".format(json_file.split("/")[2]))
                     os.makedirs(csv_file_directory, exist_ok=True)
 

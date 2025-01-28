@@ -9,7 +9,7 @@ do
     sleep 5
   fi
 
-  for representative in $(cat "raw/Lok Sabha/${sabha}/index.html" | /usr/bin/grep -oP "href=\"\/mptrack.*?\"" | cut -d '"' -f 2 | cut -d "/" -f 4 | sort -u)
+  for representative in $(cat "raw/Lok Sabha/${sabha}/index.html" | /usr/bin/grep -oP "\/mptrack\/${sabha}.*?\"" | cut -d '"' -f 1 | cut -d "/" -f 4 | sort -u)
   do
     echo "$representative"
     mkdir -p "raw/Lok Sabha/${sabha}/${representative}"
